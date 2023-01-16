@@ -127,3 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.DS_Store
+.idea/
+**/.dccache
+assignments/week-03-huggingface-fastapi/fast_api_tutorial/app/model/
+assignments/week-04-data-eng-airflow/nb/*.joblib
+assignments/week-05-big-data/dat/
+assignments/week-05-big-data/**/*.zip
+assignments/week-05-big-data/**/*.csv
+assignments/week-05-big-data/nb/spark-warehouse/
+assignments/week-05-big-data/nb/tmp/
