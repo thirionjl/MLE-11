@@ -137,3 +137,6 @@ assignments/week-05-big-data/**/*.zip
 assignments/week-05-big-data/**/*.csv
 assignments/week-05-big-data/nb/spark-warehouse/
 assignments/week-05-big-data/nb/tmp/
+assignments/week-07-intro-dl/nb/mlruns/
+.vscode/settings.json
+
