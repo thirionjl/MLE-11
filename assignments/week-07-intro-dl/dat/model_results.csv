@@ -1,0 +1,4 @@
+,Mean absolute error [MPG]
+linear_model,2.526719570159912
+dnn_model,1.7067126035690308
+tpot_model,1.7899920068027206
