@@ -1,6 +1,7 @@
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
+import plotly
 
 def _make_local_explain_df(data_shap, features, idx):
   df = pd.DataFrame(np.minimum(data_shap[idx], 0), index=features.columns, columns=["neg_shap"])
@@ -10,7 +11,7 @@ def _make_local_explain_df(data_shap, features, idx):
   df.index = range(0, len(features.columns))
   return df
 
-def plot_local_explain(data_shap, features, idx = 0):
+def plot_local_explain(data_shap, features, idx):
   df = _make_local_explain_df(data_shap, features, idx)
 
   fig = go.Figure()
@@ -39,8 +40,7 @@ def plot_local_explain(data_shap, features, idx = 0):
 
   return fig
 
-import plotly
-import plotly.graph_objects as go
+
 
 def plot_global_explain(data_shap, features):
     traces = []
