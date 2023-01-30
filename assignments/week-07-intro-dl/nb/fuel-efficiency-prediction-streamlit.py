@@ -5,7 +5,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 from PIL import Image
 from shap_plots import plot_local_explain, plot_global_explain
-from pathlib import Path
 
 # Add and resize an image to the top of the app
 
@@ -17,11 +16,11 @@ st.markdown("<h1 style='text-align: center; color: black;'>Fuel Efficiency</h1>"
 models = ["dnn", "tpot", "linear"]
 
 # Import train dataset to DataFrame
-train_df = pd.read_csv("./assignments/week-07-intro-dl/dat/train_ds.csv", index_col=0)
-model_results_df = pd.read_csv("./assignments/week-07-intro-dl/dat/model_results.csv", index_col=0)
-all_shaps = {m: pd.read_csv(f"./assignments/week-07-intro-dl/dat/shap_{m}.csv", index_col=0) for m in models}
+train_df = pd.read_csv("../dat/train_ds.csv", index_col=0)
+model_results_df = pd.read_csv("../dat/model_results.csv", index_col=0)
+all_shaps = {m: pd.read_csv(f"../dat/shap_{m}.csv", index_col=0) for m in models}
 
-sample_indices = range(len(train_df.index))
+sample_indices = {f"Item {m}":i for i, m in enumerate(train_df.index)}
 
 # Create sidebar for user selection
 with st.sidebar:
@@ -78,18 +77,18 @@ with tab2:
 
 with tab3: 
     
-    selected_idx = st.selectbox(
+    st.selectbox(
         "Sample Number:",
-        (sample_indices),
-        format_func=lambda x: f"Item {train_df.index[x]}"
+        (sample_indices)
     )
+    
 
     st.header(model1_select)
-    st.write(plot_local_explain(all_shaps[model1_select].values.squeeze(), train_df.drop(columns=["MPG"]), selected_idx))
+    st.write(plot_local_explain(all_shaps[model1_select].values.squeeze(), train_df.drop(columns=["MPG"])))
     
   
     st.header(model2_select)
-    st.write(plot_local_explain(all_shaps[model2_select].values.squeeze(), train_df.drop(columns=["MPG"]), selected_idx))
+    st.write(plot_local_explain(all_shaps[model2_select].values.squeeze(), train_df.drop(columns=["MPG"])))
     
 with tab4:
     st.header(model1_select)
